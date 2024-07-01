@@ -4,7 +4,8 @@ import { restaurants } from '../materials/mock';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <div>
-    <h1>Restaurant: <i>{restaurants[0].name}</i></h1>
+    <h1><center>Restaurants</center></h1>
+    <h2>Restaurant: <i>{restaurants[0].name}</i></h2>
     <h3>MENU</h3>
     <ul>
       <li>
@@ -46,7 +47,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       {restaurants[0].reviews[1].text}</li>
    </ul>
    <hr></hr>
-   <h1>Restaurant: <i>{restaurants[1].name}</i></h1>
+   <h2>Restaurant: <i>{restaurants[1].name}</i></h2>
    <h3>MENU</h3>
     <ul>
       <li>
@@ -80,7 +81,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       {restaurants[1].reviews[2].text}</li>
    </ul>
    <hr></hr>
-   <h1>Restaurant: <i>{restaurants[2].name}</i></h1>
+   <h2>Restaurant: <i>{restaurants[2].name}</i></h2>
     <h3>MENU</h3>
     <ul>
       <li>
@@ -120,7 +121,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       {restaurants[2].reviews[0].text}</li>
    </ul> 
    <hr></hr>
-   <h1>Restaurant: <i>{restaurants[3].name}</i></h1>
+   <h2>Restaurant: <i>{restaurants[3].name}</i></h2>
    <h3>MENU</h3>
     <ul>
       <li>
