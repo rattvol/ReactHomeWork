@@ -1,6 +1,6 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { Menu } from "./menu";
 import { Review } from "./review";
+import { ReviewForm } from "../../components/reviewForm/reviewForm";
 
 export const Restaurant = ({ restaurant }) => {
   if (!restaurant) return null;
@@ -25,6 +25,7 @@ export const Restaurant = ({ restaurant }) => {
       ) : (
         <div>-</div>
       )}
+      <ReviewForm />
       <hr></hr>
     </div>
   );
