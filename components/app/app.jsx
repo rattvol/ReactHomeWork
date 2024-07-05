@@ -2,7 +2,7 @@
 import { Layout } from "../layout/layout";
 import { restaurants } from "../../materials/mock";
 import { Restaurant } from "../restaurant/restaurant";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useTab = () => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(
@@ -18,6 +18,26 @@ export const App = () => {
   const activeRestaurant = restaurants.find(
     (restaurant) => restaurant.id === activeRestaurantId
   );
+
+  const onScroll = () => {
+    const percentage = Math.floor(
+      (window.scrollY /
+        (document.documentElement.scrollHeight - window.innerHeight)) *
+        100
+    );
+    const element = document.getElementById("progressBar");
+    element.style.width = percentage + "%";
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      onScroll();
+    });
+
+    return window.removeEventListener("scroll", () => {
+      onScroll();
+    });
+  });
 
   return (
     <Layout>

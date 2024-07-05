@@ -1,7 +1,12 @@
-export const Header = ()=>{
-   return (
-     <header>    
-        <h1><center>Restaurants</center></h1>
-    </header>
-        );
-    };
+export const Header = () => {
+  return (
+    <>
+      <header>
+        <div id="progressBar"></div>
+        <h1>
+          <center>Restaurants</center>
+        </h1>
+      </header>
+    </>
+  );
+};
