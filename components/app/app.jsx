@@ -2,7 +2,7 @@
 import { Layout } from "../layout/layout";
 import { restaurants } from "../../materials/mock";
 import { Restaurant } from "../restaurant/restaurant";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const useTab = () => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(

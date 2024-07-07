@@ -19,7 +19,7 @@ export const ProgressBar = () => {
     return window.removeEventListener("scroll", () =>
       setPercent(getNewPercent)
     );
-  });
+  }, []);
 
   return (
     <>
