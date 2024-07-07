@@ -1,8 +1,10 @@
+import { ProgressBar } from "../progressBar/progressBar";
+
 export const Header = () => {
   return (
     <>
       <header>
-        <div id="progressBar"></div>
+        <ProgressBar />
         <h1>
           <center>Restaurants</center>
         </h1>

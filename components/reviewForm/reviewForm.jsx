@@ -21,6 +21,7 @@ function reducer(state, { type, payload }) {
       };
     case "text":
       return { ...state, text: payload };
+    case "clear":
     default:
       return START_FORM;
   }
@@ -48,6 +49,8 @@ export const ReviewForm = () => {
         <span>Rating</span>
         <input
           type="number"
+          min="0"
+          max="5"
           value={form.rating}
           onChange={(event) => {
             dispatch({ type: "rating", payload: event.target.value });
@@ -63,7 +66,7 @@ export const ReviewForm = () => {
           }}
         />
       </div>
-      <button className="inputBlock" onClick={() => dispatch("")}>
+      <button className="inputBlock" onClick={() => dispatch("clear")}>
         Save
       </button>
     </div>

@@ -19,26 +19,6 @@ export const App = () => {
     (restaurant) => restaurant.id === activeRestaurantId
   );
 
-  const onScroll = () => {
-    const percentage = Math.floor(
-      (window.scrollY /
-        (document.documentElement.scrollHeight - window.innerHeight)) *
-        100
-    );
-    const element = document.getElementById("progressBar");
-    element.style.width = percentage + "%";
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      onScroll();
-    });
-
-    return window.removeEventListener("scroll", () => {
-      onScroll();
-    });
-  });
-
   return (
     <Layout>
       <div>

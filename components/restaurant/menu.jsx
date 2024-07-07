@@ -1,4 +1,4 @@
-import { useCounter } from "../customHook/useCounter";
+import { useCounter } from "./useCounter/useCounter";
 
 export const Menu = ({ name, price, ingredients }) => {
   const { counter, increase, decrease } = useCounter(0);
