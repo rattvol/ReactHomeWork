@@ -16,9 +16,8 @@ export const ProgressBar = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => setPercent(getNewPercent));
 
-    return window.removeEventListener("scroll", () =>
-      setPercent(getNewPercent)
-    );
+    return () =>
+      window.removeEventListener("scroll", () => setPercent(getNewPercent));
   }, []);
 
   return (
