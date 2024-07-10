@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import styles from "./styles.module.css";
 
 const START_FORM = { name: "", text: "", rating: 5 };
 
@@ -36,7 +37,7 @@ export const ReviewForm = () => {
 
   return (
     <div>
-      <div className="inputBlock">
+      <div className={styles.inputBlock}>
         <span>Name</span>
         <input
           value={form.name}
@@ -45,7 +46,7 @@ export const ReviewForm = () => {
           }}
         />
       </div>
-      <div className="inputBlock">
+      <div className={styles.inputBlock}>
         <span>Rating</span>
         <input
           type="number"
@@ -57,7 +58,7 @@ export const ReviewForm = () => {
           }}
         />
       </div>
-      <div className="inputBlock">
+      <div className={styles.inputBlock}>
         <span>Text</span>
         <input
           value={form.text}
@@ -66,7 +67,7 @@ export const ReviewForm = () => {
           }}
         />
       </div>
-      <button className="inputBlock" onClick={() => dispatch("clear")}>
+      <button className={styles.inputBlock} onClick={() => dispatch("clear")}>
         Save
       </button>
     </div>

@@ -1,6 +1,6 @@
 import { Menu } from "./menu";
 import { Review } from "./review";
-import { ReviewForm } from "../../components/reviewForm/reviewForm";
+import { ReviewForm } from "../reviewForm/reviewForm";
 
 export const Restaurant = ({ restaurant }) => {
   if (!restaurant) return null;

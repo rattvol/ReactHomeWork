@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./styles.module.css";
 
 const getNewPercent = () => {
   return (
@@ -22,7 +23,7 @@ export const ProgressBar = () => {
 
   return (
     <>
-      <div id="progressBar" style={{ width: percent }}></div>
+      <div className={styles.progressBar} style={{ width: percent }}></div>
     </>
   );
 };
