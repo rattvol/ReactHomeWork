@@ -1,8 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Layout } from "../layout/layout";
-import { restaurants } from "../../materials/mock";
+import { restaurants } from "../../../materials/mock";
 import { Restaurant } from "../restaurant/restaurant";
 import { useState } from "react";
+import styles from "./styles.module.css";
+import "./main.css";
 
 const useTab = () => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(
@@ -26,7 +28,7 @@ export const App = () => {
           return (
             <button
               key={id}
-              className="tabButton"
+              className={styles.tabButton}
               onClick={() => setActiveRestaurantId(id)}
             >
               {name}
