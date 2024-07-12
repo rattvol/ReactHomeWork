@@ -1,10 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Layout } from "../layout/layout";
 import { restaurants } from "../../../materials/mock";
-import { Restaurant } from "../restaurant/restaurant";
 import { useState } from "react";
-import styles from "./styles.module.css";
+import { Restaurant } from "../restaurant/restaurant";
 import "./main.css";
+import { ThemeContextProvider } from "../themeContext/component";
+import { UserContextProvider } from "../userContext/component";
+import { SwitchThemeButton } from "../switchThemeButton/switchThemeButton";
+import { SwitchUserButton } from "../switchUserButton/switchUserButton";
+import { TabButton } from "./tabButton";
 
 const useTab = () => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(
@@ -23,22 +27,27 @@ export const App = () => {
 
   return (
     <Layout>
-      <div>
-        {restaurants.map(({ id, name }) => {
-          return (
-            <button
-              key={id}
-              className={styles.tabButton}
-              onClick={() => setActiveRestaurantId(id)}
-            >
-              {name}
-            </button>
-          );
-        })}
-        <div id="content">
-          {activeRestaurant && <Restaurant restaurant={activeRestaurant} />}
-        </div>
-      </div>
+      <UserContextProvider>
+        <SwitchUserButton />
+        <ThemeContextProvider>
+          <SwitchThemeButton />
+          <div>
+            {restaurants.map(({ id, name }) => {
+              return (
+                <TabButton
+                  key={id}
+                  id={id}
+                  name={name}
+                  setActiveRestaurantId={setActiveRestaurantId}
+                />
+              );
+            })}
+            <div id="content">
+              {activeRestaurant && <Restaurant restaurant={activeRestaurant} />}
+            </div>
+          </div>
+        </ThemeContextProvider>
+      </UserContextProvider>
     </Layout>
   );
 };

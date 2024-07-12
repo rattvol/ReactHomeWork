@@ -1,7 +1,6 @@
-import { useCounter } from "./useCounter/useCounter";
+import { Counter } from "../counter/counter.jsx";
 
 export const Menu = ({ name, price, ingredients }) => {
-  const { counter, increase, decrease } = useCounter(0);
   return (
     <div>
       <h4>{name}</h4>
@@ -14,9 +13,7 @@ export const Menu = ({ name, price, ingredients }) => {
           <div>-</div>
         )}
       </ul>
-      <button onClick={increase}>+</button>
-      {counter}
-      <button onClick={decrease}>-</button>
+      <Counter />
     </div>
   );
 };
