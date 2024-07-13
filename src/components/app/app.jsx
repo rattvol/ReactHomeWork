@@ -7,7 +7,6 @@ import "./main.css";
 import { ThemeContextProvider } from "../themeContext/component";
 import { UserContextProvider } from "../userContext/component";
 import { SwitchThemeButton } from "../switchThemeButton/switchThemeButton";
-import { SwitchUserButton } from "../switchUserButton/switchUserButton";
 import { TabButton } from "./tabButton";
 
 const useTab = () => {
@@ -26,10 +25,9 @@ export const App = () => {
   );
 
   return (
-    <Layout>
+    <ThemeContextProvider>
       <UserContextProvider>
-        <SwitchUserButton />
-        <ThemeContextProvider>
+        <Layout>
           <SwitchThemeButton />
           <div>
             {restaurants.map(({ id, name }) => {
@@ -46,8 +44,8 @@ export const App = () => {
               {activeRestaurant && <Restaurant restaurant={activeRestaurant} />}
             </div>
           </div>
-        </ThemeContextProvider>
+        </Layout>
       </UserContextProvider>
-    </Layout>
+    </ThemeContextProvider>
   );
 };

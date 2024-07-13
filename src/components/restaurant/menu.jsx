@@ -1,6 +1,9 @@
 import { Counter } from "../counter/counter.jsx";
+import { useUser } from "../userContext/component.jsx";
 
 export const Menu = ({ name, price, ingredients }) => {
+  const { value } = useUser();
+
   return (
     <div>
       <h4>{name}</h4>
@@ -13,7 +16,7 @@ export const Menu = ({ name, price, ingredients }) => {
           <div>-</div>
         )}
       </ul>
-      <Counter />
+      {value && <Counter />}
     </div>
   );
 };

@@ -1,4 +1,7 @@
 import { useUser } from "../userContext/component";
+import classNames from "classnames";
+import styles from "./styles.module.css";
+import { useTheme } from "../themeContext/component";
 
 function getText(userName) {
   return userName ? "User: " + userName : "";
@@ -9,12 +12,23 @@ function getButtonValue(userName) {
 }
 
 export const SwitchUserButton = () => {
-  var { value, toggleButton } = useUser();
-  var text = getText(value);
-  var buttonValue = getButtonValue(value);
+  const { value, toggleButton } = useUser();
+  const text = getText(value);
+  const buttonValue = getButtonValue(value);
+  const { value: themeMode } = useTheme();
+
   return (
     <div>
-      <button onClick={toggleButton}>{buttonValue}</button> {text}
+      <button
+        className={classNames({
+          [styles.buttonDefault]: themeMode === "bw",
+          [styles.buttonYellow]: themeMode === "yellow",
+        })}
+        onClick={toggleButton}
+      >
+        {buttonValue}
+      </button>{" "}
+      {text}
     </div>
   );
 };
