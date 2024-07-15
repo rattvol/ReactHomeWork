@@ -12,3 +12,11 @@
   background: 0 0;
   margin-left: 50px;
 }
+
+.buttonDefault {
+  background-color: white;
+}
+
+.buttonYellow {
+  background-color: yellow;
+}
