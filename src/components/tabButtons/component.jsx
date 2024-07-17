@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 
 export const TabButton = ({ id, name, setActiveRestaurantId }) => {
   const { value: themeMode } = useTheme();
+
   return (
     <button
       className={classNames(styles.tabButton, {

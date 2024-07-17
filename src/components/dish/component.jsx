@@ -1,7 +1,7 @@
-import { Counter } from "../counter/counter.jsx";
-import { useUser } from "../userContext/component.jsx";
+import { useUser } from "../userContext/component";
+import { Counter } from "../counter/counter";
 
-export const Menu = ({ name, price, ingredients }) => {
+export const Dish = ({ name, price, ingredients }) => {
   const { value } = useUser();
 
   return (
