@@ -1,13 +1,14 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { Layout } from "../layout/layout";
 import { restaurants } from "../../../materials/mock";
 import { useState } from "react";
-import { Restaurant } from "../restaurant/restaurant";
 import "./main.css";
 import { ThemeContextProvider } from "../themeContext/component";
 import { UserContextProvider } from "../userContext/component";
 import { SwitchThemeButton } from "../switchThemeButton/switchThemeButton";
-import { TabButton } from "./tabButton";
+import { Provider } from "react-redux";
+import { store } from "../../redux";
+import { RestaurantContainer } from "../restaurant/container";
+import { RestTabButtonsContainer } from "../restTabButtons/container";
 
 const useTab = () => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(
@@ -20,32 +21,21 @@ const useTab = () => {
 export const App = () => {
   const { activeRestaurantId, setActiveRestaurantId } = useTab();
 
-  const activeRestaurant = restaurants.find(
-    (restaurant) => restaurant.id === activeRestaurantId
-  );
-
   return (
-    <ThemeContextProvider>
-      <UserContextProvider>
-        <Layout>
-          <SwitchThemeButton />
-          <div>
-            {restaurants.map(({ id, name }) => {
-              return (
-                <TabButton
-                  key={id}
-                  id={id}
-                  name={name}
-                  setActiveRestaurantId={setActiveRestaurantId}
-                />
-              );
-            })}
-            <div id="content">
-              {activeRestaurant && <Restaurant restaurant={activeRestaurant} />}
+    <Provider store={store}>
+      <ThemeContextProvider>
+        <UserContextProvider>
+          <Layout>
+            <SwitchThemeButton />
+            <div>
+              <RestTabButtonsContainer
+                setActiveRestaurantId={setActiveRestaurantId}
+              />
+              <RestaurantContainer id={activeRestaurantId} />
             </div>
-          </div>
-        </Layout>
-      </UserContextProvider>
-    </ThemeContextProvider>
+          </Layout>
+        </UserContextProvider>
+      </ThemeContextProvider>
+    </Provider>
   );
 };
