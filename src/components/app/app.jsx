@@ -8,7 +8,7 @@ import { SwitchThemeButton } from "../switchThemeButton/switchThemeButton";
 import { Provider } from "react-redux";
 import { store } from "../../redux";
 import { RestaurantContainer } from "../restaurant/container";
-import { TabButtons } from "../tabButtons/container";
+import { RestTabButtonsContainer } from "../restTabButtons/container";
 
 const useTab = () => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(
@@ -28,7 +28,9 @@ export const App = () => {
           <Layout>
             <SwitchThemeButton />
             <div>
-              <TabButtons setActiveRestaurantId={setActiveRestaurantId} />
+              <RestTabButtonsContainer
+                setActiveRestaurantId={setActiveRestaurantId}
+              />
               <RestaurantContainer id={activeRestaurantId} />
             </div>
           </Layout>

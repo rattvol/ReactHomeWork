@@ -2,7 +2,7 @@ import { useTheme } from "../themeContext/component";
 import classNames from "classnames";
 import styles from "./styles.module.css";
 
-export const TabButton = ({ id, name, setActiveRestaurantId }) => {
+export const RestTabButton = ({ id, name, clickAction }) => {
   const { value: themeMode } = useTheme();
 
   return (
@@ -11,7 +11,7 @@ export const TabButton = ({ id, name, setActiveRestaurantId }) => {
         [styles.buttonDefault]: themeMode === "bw",
         [styles.buttonYellow]: themeMode === "yellow",
       })}
-      onClick={() => setActiveRestaurantId(id)}
+      onClick={() => clickAction(id)}
     >
       {name}
     </button>
