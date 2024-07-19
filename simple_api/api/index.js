@@ -1,62 +1,62 @@
 const router = require("express").Router();
 const { nanoid } = require("nanoid");
-const { products, codecs, users, reviews } = require("./mock");
+const { restaurants, dishes, users, reviews } = require("./mock");
 const { reply, getById, updateById } = require("./utils");
 
-router.get("/products", (req, res, next) => {
-  reply(res, products);
+router.get("/restaurants", (req, res, next) => {
+  reply(res, restaurants);
 });
 
-router.get("/product/:productId", (req, res, next) => {
-  const productId = req.params?.productId;
-  console.log(productId);
-  let product;
+router.get("/restaurant/:restaurantId", (req, res, next) => {
+  const restaurantId = req.params?.restaurantId;
+  console.log(restaurantId);
+  let restaurant;
 
-  if (productId) {
-    product = getById(products)(productId);
+  if (restaurantId) {
+    restaurant = getById(restaurants)(restaurantId);
   }
 
-  reply(res, product);
+  reply(res, restaurant);
 });
 
-router.get("/codecs", (req, res, next) => {
-  const { productId } = req.query;
-  let result = codecs;
-  if (productId) {
-    const product = getById(products)(productId);
-    if (product) {
-      result = product.codecs.map(getById(result));
+router.get("/dishes", (req, res, next) => {
+  const { restaurantId } = req.query;
+  let result = dishes;
+  if (restaurantId) {
+    const restaurant = getById(restaurants)(restaurantId);
+    if (restaurant) {
+      result = restaurant.dishes.map(getById(result));
     }
   }
   reply(res, result);
 });
 
 router.get("/reviews", (req, res, next) => {
-  const { productId } = req.query;
+  const { restaurantId } = req.query;
   let result = reviews;
-  if (productId) {
-    const product = getById(products)(productId);
-    if (product) {
-      result = product.reviews.map(getById(result));
+  if (restaurantId) {
+    const restaurant = getById(restaurants)(restaurantId);
+    if (restaurant) {
+      result = restaurant.reviews.map(getById(result));
     }
   }
   reply(res, result);
 });
 
-router.post("/review/:productId", (req, res, next) => {
+router.post("/review/:restaurantId", (req, res, next) => {
   const body = req.body;
-  const productId = req.params?.productId;
-  const product = productId && getById(products)(productId);
+  const restaurantId = req.params?.restaurantId;
+  const restaurant = restaurantId && getById(restaurants)(restaurantId);
   let newReview = {};
 
-  if (product && body) {
+  if (restaurant && body) {
     const newReviewId = nanoid();
 
     newReview = {
       ...body,
       id: newReviewId,
     };
-    product.reviews.push(newReviewId);
+    restaurant.reviews.push(newReviewId);
     reviews.push(newReview);
   }
 
