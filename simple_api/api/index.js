@@ -1,15 +1,19 @@
 const router = require("express").Router();
 const { nanoid } = require("nanoid");
-const { restaurants, dishes, users, reviews } = require("./mock");
+const { restaurants, dishes, reviews, users } = require("./mock");
 const { reply, getById, updateById } = require("./utils");
 
 router.get("/restaurants", (req, res, next) => {
-  reply(res, restaurants);
+  const { restaurantId } = req.query;
+  let result = restaurants;
+
+  if (restaurantId) result = getById(result)(restaurantId);
+
+  reply(res, result);
 });
 
 router.get("/restaurant/:restaurantId", (req, res, next) => {
   const restaurantId = req.params?.restaurantId;
-  console.log(restaurantId);
   let restaurant;
 
   if (restaurantId) {
@@ -20,15 +24,30 @@ router.get("/restaurant/:restaurantId", (req, res, next) => {
 });
 
 router.get("/dishes", (req, res, next) => {
-  const { restaurantId } = req.query;
+  const { restaurantId, dishId } = req.query;
   let result = dishes;
+
   if (restaurantId) {
     const restaurant = getById(restaurants)(restaurantId);
     if (restaurant) {
-      result = restaurant.dishes.map(getById(result));
+      result = restaurant.menu.map(getById(result));
     }
   }
+
+  if (!restaurantId && dishId) {
+    result = getById(result)(dishId);
+  }
   reply(res, result);
+});
+
+router.get("/dish/:dishId", (req, res, next) => {
+  const dishId = req.params?.dishId;
+  let product;
+
+  if (dishId) {
+    product = getById(dishes)(dishId);
+  }
+  reply(res, product);
 });
 
 router.get("/reviews", (req, res, next) => {
@@ -76,7 +95,13 @@ router.patch("/review/:reviewId", (req, res, next) => {
 });
 
 router.get("/users", (req, res, next) => {
-  reply(res, users);
+  const { userId } = req.query;
+  let user;
+
+  if (userId) {
+    user = getById(users)(userId);
+  }
+  reply(res, user);
 });
 
 module.exports = router;

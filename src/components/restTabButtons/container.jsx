@@ -1,16 +1,14 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantIds } from "../../redux/entities/restaurant/restaurant";
 import { RestTabButtons } from "./component";
+import { useGetRestaurantsQuery } from "../../redux/services/api";
 
 export const RestTabButtonsContainer = ({ setActiveRestaurantId }) => {
-  const restIds = useSelector(selectRestaurantIds);
+  const { data: restaurants } = useGetRestaurantsQuery();
 
-  if (!restIds.length) {
-    return null;
-  }
+  if (!restaurants) return null;
+
   return (
     <RestTabButtons
-      restIds={restIds}
+      restaurants={restaurants}
       setActiveRestaurantId={setActiveRestaurantId}
     />
   );

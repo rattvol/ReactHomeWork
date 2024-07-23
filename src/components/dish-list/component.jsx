@@ -1,16 +1,19 @@
+import { useGetDishByRestaurantIdQuery } from "../../redux/services/api";
 import { DishContainer } from "../dish/container";
 
-export const DishList = ({ dishIds }) => {
-  if (!dishIds.length) {
+export const DishList = ({ restaurantId }) => {
+  const { data: dishes } = useGetDishByRestaurantIdQuery(restaurantId);
+
+  if (!dishes) {
     return null;
   }
 
   return (
     <div>
       <ul>
-        {dishIds.map((id) => (
-          <li key={id}>
-            <DishContainer id={id} />
+        {dishes.map((dish) => (
+          <li key={dish.id}>
+            <DishContainer dish={dish} />
           </li>
         ))}
       </ul>

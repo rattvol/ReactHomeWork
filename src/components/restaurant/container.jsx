@@ -1,15 +1,33 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/entities/restaurant/restaurant";
 import { Restaurant } from "./component";
+import {
+  useCreateReviewMutation,
+  useGetRestaurantByIdQuery,
+} from "../../redux/services/api";
 
 export const RestaurantContainer = ({ id }) => {
-  const restaurant = useSelector((state) => selectRestaurantById(state, id));
+  const {
+    data: restaurant,
+    isLoading,
+    isFetching,
+  } = useGetRestaurantByIdQuery(id);
+
+  const [onCreateReview, { isLoading: isReviewUploading }] =
+    useCreateReviewMutation();
+
+  if (isLoading || isFetching) return "loading";
 
   if (!restaurant) {
     return null;
   }
 
-  const { name, reviews, menu } = restaurant;
+  const { id: restaurantId, name } = restaurant;
 
-  return <Restaurant name={name} dishIds={menu} reviewIds={reviews} />;
+  return (
+    <Restaurant
+      restaurantId={restaurantId}
+      name={name}
+      onCreateReview={(review) => onCreateReview({ review, restaurantId })}
+      isReviewUploading={isReviewUploading}
+    />
+  );
 };
