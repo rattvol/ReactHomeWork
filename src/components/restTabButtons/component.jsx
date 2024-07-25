@@ -1,12 +1,13 @@
 import { RestTabButtonContainer } from "../restTabButton/container";
 
-export const RestTabButtons = ({ restIds, setActiveRestaurantId }) => {
+export const RestTabButtons = ({ restaurants, setActiveRestaurantId }) => {
   return (
     <div>
-      {restIds.map((id) => (
+      {restaurants.map(({ id, name }) => (
         <RestTabButtonContainer
           key={id}
           id={id}
+          name={name}
           clickAction={setActiveRestaurantId}
         />
       ))}

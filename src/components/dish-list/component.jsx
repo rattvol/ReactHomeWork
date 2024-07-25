@@ -1,16 +1,23 @@
-import { DishContainer } from "../dish/container";
+import { useGetDishByRestaurantIdQuery } from "../../redux/services/api";
+import { Dish } from "../dish/component";
 
-export const DishList = ({ dishIds }) => {
-  if (!dishIds.length) {
+export const DishList = ({ restaurantId }) => {
+  const { data: dishes } = useGetDishByRestaurantIdQuery(restaurantId);
+
+  if (!dishes) {
     return null;
   }
 
   return (
     <div>
       <ul>
-        {dishIds.map((id) => (
-          <li key={id}>
-            <DishContainer id={id} />
+        {dishes.map((dish) => (
+          <li key={dish.id}>
+            <Dish
+              name={dish.name}
+              price={dish.price}
+              ingredients={dish.ingredients}
+            />
           </li>
         ))}
       </ul>

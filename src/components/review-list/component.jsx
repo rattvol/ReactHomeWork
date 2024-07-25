@@ -1,16 +1,19 @@
+import { useGetReviewsByRestaurantIdQuery } from "../../redux/services/api";
 import { ReviewContainer } from "../review/container";
 
-export const ReviewList = ({ reviewIds }) => {
-  if (!reviewIds.length) {
+export const ReviewList = ({ restaurantId }) => {
+  const { data: reviews } = useGetReviewsByRestaurantIdQuery(restaurantId);
+
+  if (!reviews) {
     return null;
   }
 
   return (
     <div>
       <ul>
-        {reviewIds.map((id) => (
-          <li key={id}>
-            <ReviewContainer id={id} />
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <ReviewContainer review={review} />
           </li>
         ))}
       </ul>
