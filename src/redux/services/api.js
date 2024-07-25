@@ -10,8 +10,7 @@ export const apiSlice = createApi({
     }),
     getRestaurantById: builder.query({
       query: (restaurantId) => ({
-        url: "/restaurants",
-        params: { restaurantId },
+        url: `/restaurant/${restaurantId}`,
       }),
     }),
     getUsers: builder.query({

@@ -1,5 +1,5 @@
 import { useGetDishByRestaurantIdQuery } from "../../redux/services/api";
-import { DishContainer } from "../dish/container";
+import { Dish } from "../dish/component";
 
 export const DishList = ({ restaurantId }) => {
   const { data: dishes } = useGetDishByRestaurantIdQuery(restaurantId);
@@ -13,7 +13,11 @@ export const DishList = ({ restaurantId }) => {
       <ul>
         {dishes.map((dish) => (
           <li key={dish.id}>
-            <DishContainer dish={dish} />
+            <Dish
+              name={dish.name}
+              price={dish.price}
+              ingredients={dish.ingredients}
+            />
           </li>
         ))}
       </ul>
