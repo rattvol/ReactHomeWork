@@ -1,21 +1,15 @@
 import { Footer } from "../footer/footer";
 import { Header } from "../header/header";
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getRestaurants } from "../../redux/entities/restaurant/get-restaurants";
+import { SwitchThemeButton } from "../switchThemeButton/switchThemeButton";
+import { Outlet } from "react-router-dom";
 
-export const Layout = ({ children }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getRestaurants());
-  }, [dispatch]);
-
+export const Layout = () => {
   return (
     <div className={styles.layoutCustom}>
       <Header />
-      {children}
+      <SwitchThemeButton />
+      <Outlet />
       <Footer />
     </div>
   );

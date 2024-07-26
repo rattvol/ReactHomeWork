@@ -1,15 +1,10 @@
-import { RestTabButtonContainer } from "../restTabButton/container";
+import { RestTabButton } from "../restTabButton/component";
 
-export const RestTabButtons = ({ restaurants, setActiveRestaurantId }) => {
+export const RestTabButtons = ({ restaurants }) => {
   return (
     <div>
       {restaurants.map(({ id, name }) => (
-        <RestTabButtonContainer
-          key={id}
-          id={id}
-          name={name}
-          clickAction={setActiveRestaurantId}
-        />
+        <RestTabButton key={id} id={id} name={name} />
       ))}
     </div>
   );

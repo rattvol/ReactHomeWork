@@ -1,27 +1,12 @@
-import { DishList } from "../dish-list/component";
-import { ReviewList } from "../review-list/component";
-import { ReviewForm } from "../reviewForm/reviewForm";
+import { RestaurantContentButtons } from "../restourant-content-buttons/component";
 
-export const Restaurant = ({
-  restaurantId,
-  name,
-  onCreateReview,
-  isReviewUploading,
-}) => {
+export const Restaurant = ({ name }) => {
   return (
     <div>
       <h2>
         Restaurant: <i>{name}</i>
       </h2>
-      <h3>MENU</h3>
-      <DishList restaurantId={restaurantId} />
-      <h3>REVIEWS</h3>
-      <ReviewList restaurantId={restaurantId} />
-      <ReviewForm
-        onCreateReview={onCreateReview}
-        isReviewUploading={isReviewUploading}
-      />
-      <hr></hr>
+      <RestaurantContentButtons />
     </div>
   );
 };

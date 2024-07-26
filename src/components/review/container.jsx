@@ -1,7 +1,7 @@
 import { Review } from "./component";
 
 export const ReviewContainer = ({ review }) => {
-  const { userId, rating, text } = review;
+  const { id, userId, rating, text } = review;
 
-  return <Review userId={userId} rating={rating} text={text} />;
+  return <Review key={id} userId={userId} rating={rating} text={text} />;
 };
