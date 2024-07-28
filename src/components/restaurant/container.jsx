@@ -1,18 +1,15 @@
 import { Restaurant } from "./component";
-import {
-  useCreateReviewMutation,
-  useGetRestaurantByIdQuery,
-} from "../../redux/services/api";
+import { useGetRestaurantByIdQuery } from "../../redux/services/api";
+import { useParams } from "react-router-dom";
 
-export const RestaurantContainer = ({ id }) => {
+export const RestaurantContainer = () => {
+  const { restaurantId: id } = useParams();
+
   const {
     data: restaurant,
     isLoading,
     isFetching,
   } = useGetRestaurantByIdQuery(id);
-
-  const [onCreateReview, { isLoading: isReviewUploading }] =
-    useCreateReviewMutation();
 
   if (isLoading || isFetching) return "loading";
 
@@ -22,12 +19,5 @@ export const RestaurantContainer = ({ id }) => {
 
   const { id: restaurantId, name } = restaurant;
 
-  return (
-    <Restaurant
-      restaurantId={restaurantId}
-      name={name}
-      onCreateReview={(review) => onCreateReview({ review, restaurantId })}
-      isReviewUploading={isReviewUploading}
-    />
-  );
+  return <Restaurant key={restaurantId} name={name} />;
 };

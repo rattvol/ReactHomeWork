@@ -1,7 +1,9 @@
+import { NavLink } from "react-router-dom";
 import { useGetDishByRestaurantIdQuery } from "../../redux/services/api";
-import { Dish } from "../dish/component";
+import { useParams } from "react-router-dom";
 
-export const DishList = ({ restaurantId }) => {
+export const DishList = () => {
+  const { restaurantId } = useParams();
   const { data: dishes } = useGetDishByRestaurantIdQuery(restaurantId);
 
   if (!dishes) {
@@ -10,14 +12,11 @@ export const DishList = ({ restaurantId }) => {
 
   return (
     <div>
+      <h3>MENU</h3>
       <ul>
         {dishes.map((dish) => (
           <li key={dish.id}>
-            <Dish
-              name={dish.name}
-              price={dish.price}
-              ingredients={dish.ingredients}
-            />
+            <NavLink to={`/dishes/${dish.id}`}>{dish.name}</NavLink>
           </li>
         ))}
       </ul>

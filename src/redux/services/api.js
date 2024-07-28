@@ -28,6 +28,14 @@ export const apiSlice = createApi({
         params: { restaurantId },
       }),
     }),
+
+    getDishById: builder.query({
+      query: (dishId) => ({
+        url: "dishes",
+        params: { dishId },
+      }),
+    }),
+
     getReviewsByRestaurantId: builder.query({
       query: (restaurantId) => ({
         url: "reviews",
@@ -58,4 +66,5 @@ export const {
   useCreateReviewMutation,
   useGetUsersQuery,
   useGetUserByIdQuery,
+  useGetDishByIdQuery,
 } = apiSlice;
