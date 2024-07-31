@@ -57,7 +57,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const App = () => {
+const App = () => {
   return (
     <Provider store={store}>
       <ThemeContextProvider>
@@ -68,3 +68,4 @@ export const App = () => {
     </Provider>
   );
 };
+export default App;
